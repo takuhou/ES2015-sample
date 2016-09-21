@@ -1,9 +1,9 @@
 (function(){
 
-  var url = 'http://ad-tech-study.com/display/q7';
-  var format = '<li><a href=__CLICKURL__><div class=\"date\"><span class=\"day\"><img src=\"__IMAGEURL__\" alt=\"__TITLE__\" width=\"43\"></span></div><div class=\"txt\">[広告]__VERSION__ __TITLE__</div></a></li>';
+  var URL = 'http://ad-tech-study.com/display/q7';
+  var DOM_FORMAT = '<li><a href=__CLICKURL__><div class=\"date\"><span class=\"day\"><img src=\"__IMAGEURL__\" alt=\"__TITLE__\" width=\"43\"></span></div><div class=\"txt\">[広告]__VERSION__ __TITLE__</div></a></li>';
 
-  function getAd(url,id) {
+  function create(url,id) {
     var xhr = new XMLHttpRequest();
     // xhr.withCredentials = true;
     xhr.onreadystatechange = function (){
@@ -12,7 +12,7 @@
         if(200 === xhr.status) {
           var adJson = JSON.parse(xhr.responseText);
           adJson.id = id;
-          createAd(adJson);
+          format(adJson);
         } else {
           console.log('no ad');
         }
@@ -23,10 +23,8 @@
     xhr.send();
   }
 
-  function createAd(json){
-    var dom = document.getElementById(json.id);
-
-    var html = format.replace(/__CLICKURL__/g, json.click_url);
+  function format(json){
+    var html = DOM_FORMAT.replace(/__CLICKURL__/g, json.click_url);
     html = html.replace(/__IMAGEURL__/g, json.image_url);
     html = html.replace(/__TITLE__/g, json.title);
     html = html.replace(/__VERSION__/g, 'ES5');
@@ -34,12 +32,17 @@
     var ad = document.createElement('div');
     ad.innerHTML = html;
 
+    display(json.id,ad);
+  }
+
+  function display(id,ad){
+    var dom = document.getElementById(id);
     dom.appendChild(ad);
   }
 
   window.ES5 = window.ES5 = {
     init : function(id){
-      getAd(url,id);
+      create(URL,id);
     }
   };
 })();
