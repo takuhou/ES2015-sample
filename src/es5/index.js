@@ -1,7 +1,7 @@
 (function(){
 
   var URL = 'http://ad-tech-study.com/display/q7';
-  var DOM_FORMAT = '<li><a href=__CLICKURL__><div class=\"date\"><span class=\"day\"><img src=\"__IMAGEURL__\" alt=\"__TITLE__\" width=\"43\"></span></div><div class=\"txt\">[広告]__VERSION__ __TITLE__</div></a></li>';
+  var DOM_FORMAT = '<li><a href=__CLICKURL__><div class=\"date\"><span class=\"day\"><img src=\"__IMAGEURL__\" alt=\"__TITLE__\" width=\"43\"></span></div><div class=\"txt\">[__VERSION__] __TITLE__</div></a></li>';
 
   function create(url,id) {
     var xhr = new XMLHttpRequest();
