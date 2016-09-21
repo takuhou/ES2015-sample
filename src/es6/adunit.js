@@ -8,17 +8,6 @@ export default class AdUnit {
     this.target = document.getElementById(id);
   }
 
-  format(elements) {
-    let html = Settings.DOM_FORMAT.replace(/__CLICKURL__/g, elements.click_url);
-    html = html.replace(/__IMAGEURL__/g, elements.image_url);
-    html = html.replace(/__TITLE__/g, elements.title);
-
-    const ad = document.createElement('div');
-    ad.innerHTML = html;
-
-    this.target.appendChild(ad);
-  }
-
   create() {
     Utils.request(Settings.URL).then((res) => {
       const elements = JSON.parse(res);
@@ -26,5 +15,19 @@ export default class AdUnit {
     }).catch((e) => {
       console.error(e);
     });
+  }
+
+  format(elements) {
+    let html = Settings.DOM_FORMAT.replace(/__CLICKURL__/g, elements.click_url);
+    html = html.replace(/__IMAGEURL__/g, elements.image_url);
+    html = html.replace(/__TITLE__/g, elements.title);
+    html = html.replace(/__VERSION__/g, 'ES6');
+    const ad = document.createElement('div');
+    ad.innerHTML = html;
+    this.display(ad);
+  }
+
+  display(ad) {
+    this.target.appendChild(ad);
   }
 }

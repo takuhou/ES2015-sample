@@ -5,6 +5,6 @@ export default class Settings {
   }
 
   static get DOM_FORMAT() {
-    return '<li><a href=__CLICKURL__><div class="date"><span class="day"><img src="__IMAGEURL__" alt="__TITLE__" width="43"></span></div><div class="txt">[広告]__TITLE__</div></a></li>';
+    return '<li><a href=__CLICKURL__><div class="date"><span class="day"><img src="__IMAGEURL__" alt="__TITLE__" width="43"></span></div><div class="txt">[__VERSION__] __TITLE__</div></a></li>';
   }
 }

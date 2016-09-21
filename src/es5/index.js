@@ -1,7 +1,7 @@
 (function(){
 
   var url = 'http://ad-tech-study.com/display/q7';
-  var format = '<li><a href=__CLICKURL__><div class=\"date\"><span class=\"day\"><img src=\"__IMAGEURL__\" alt=\"__TITLE__\" width=\"43\"></span></div><div class=\"txt\">[広告]__TITLE__</div></a></li>';
+  var format = '<li><a href=__CLICKURL__><div class=\"date\"><span class=\"day\"><img src=\"__IMAGEURL__\" alt=\"__TITLE__\" width=\"43\"></span></div><div class=\"txt\">[広告]__VERSION__ __TITLE__</div></a></li>';
 
   function getAd(url,id) {
     var xhr = new XMLHttpRequest();
@@ -29,6 +29,7 @@
     var html = format.replace(/__CLICKURL__/g, json.click_url);
     html = html.replace(/__IMAGEURL__/g, json.image_url);
     html = html.replace(/__TITLE__/g, json.title);
+    html = html.replace(/__VERSION__/g, 'ES5');
 
     var ad = document.createElement('div');
     ad.innerHTML = html;
